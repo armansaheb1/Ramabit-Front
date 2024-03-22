@@ -1,9 +1,9 @@
 <template>
-  <div style="z-index:1000; height: 100%; border-left: solid lightgrey 1px">
+  <div style="z-index:1000; height: 100%; border-left: solid #333 1px">
     <nav style="height:80px " class="navbar navbar-expand-lg"
       :class="{ 'bg-light': !$store.state.isDark, 'bg-dark': $store.state.isDark }">
       <a v-if="$store.state.collapse" @click="collapse()"
-        style="cursor:pointer;color:grey ; font-size: 30px ; margin-left: 15px"><font-awesome-icon
+        style="cursor:pointer;color:grey ; font-size: 30px ; margin-left: 15px; margin-top: 15px"><font-awesome-icon
           icon="angles-left" /></a>
       <a v-if="!$store.state.collapse" @click="collapse()"
         style="cursor:pointer;color:grey ; font-size: 30px ; position:absolute ; left: 10px"
@@ -13,7 +13,7 @@
       <a v-if="$store.state.collapse" class="navbar-brand" href="/"
         style="font: 18px 'arial'; color:#efefef ; height:70px ; padding:10% ; text-align:center ;float:left"> </a>
     </nav>
-    <nav class="navbar" style=" border-top: solid lightgrey 1px ;padding:0; direction:rtl">
+    <nav class="navbar" style=" border-top: solid #333 1px ;padding:0; direction:rtl">
       <div class="" style="padding:0 ; width:100% ; text-align:left">
         <SidenavLink style="width:100%; font-weight:light" icon="list" href="/dashboard"><a
             v-if="!$store.state.collapse"> داشبورد</a></SidenavLink>

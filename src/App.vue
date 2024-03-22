@@ -21,8 +21,14 @@ export default {
       document.querySelector('html').style.background = "#fff"
     }
     this.get_height()
+    this.before()
   },
   methods: {
+    before() {
+      if (window.innerWidth > 1023) {
+        this.$store.state.collapse = false
+      }
+    },
     get_height() {
       this.height = window.innerHeight
     }

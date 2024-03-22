@@ -1,89 +1,101 @@
 <template>
   <div>
-          <div class="card login-card">
-            <div class="card-header" :class="{'bannerbg-dark' :$store.state.isDark, 'bannerbg-light' :!$store.state.isDark}" style="padding:0">
-              <button v-bind:class="{ 'active' : login}" class="login-btn" @click="login = true">Login</button>
-              <button v-bind:class="{ 'active' : !login}" class="login-btn" @click="login = false"> Sign Up</button>
-            </div>
-            <div class="card-body" v-if="login">
-              <a class="navbar-brand" href="/"><img style="height:60px" src="https://www.ramabit.com/media/settings/ramabit.jpg" alt=""></a><br><br>
-              <div class="card">
-                <div class="card-header" :class="{'bannerbg-dark' :$store.state.isDark, 'bannerbg-light' :!$store.state.isDark}">
-                login
-                </div>
-                <div class="card-body">
-                  <form @submit.prevent="submitForm()"  >
-                    <div id='form1'>
-                  <input type="text" class="form-control" v-model="username" placeholder="Username" name="" >
-                  <br>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input v-model="password" class="form-control" type="password">
-                      <div class="input-group-addon">
-                        <a class="input-group-text" @click.prevent="show" style="border-radius: 0 5px 5px 0" ><font-awesome-icon class="eye-slash" style="font-size:25px;display:none"  :icon="['far', 'eye-slash']" /><font-awesome-icon class="eye" style="font-size:25px"  :icon="['far', 'eye']" /></a>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <p style="text-align:left; font-size:14px">Forgot password? <a >Click Here</a></p>
-                  </div>
-                  <div id="form2" hidden>
-                    <label for="">Google Authenticator Code</label>
-                    <input   v-model="gcode" class="form-control"  type="text"><br>
-                  </div>
-                  
-                  <button class="btn btn-dark form-control">LOGIN</button>
-                  <br><br>
-                  <p style="font-size:14px">Don’t have an account?  <a >Sign up</a></p>
-                  
-                 
-                  </form>
-                </div>
-              </div>
-            </div>
-
-
-
-
-            <div class="card-body" v-if="!login">
-              <a class="navbar-brand" href="#"><img style="height:60px" src="https://www.ramabit.com/media/settings/ramabit.jpg" alt=""></a><br><br>
-              <div class="card">
-                <div class="card-header" :class="{'bannerbg-dark' :$store.state.isDark, 'bannerbg-light' :!$store.state.isDark}">
-                Sign Up
-                </div>
-                <div class="card-body">
-                  <form @submit.prevent="RsubmitForm()">
-                    <div class="alert alert-success" v-if="success">{{success}}</div>
-                  <div class="form-group">
-                    <div class="input-group mb-3" >
-                      <input required class="form-control Rpass" v-model="Rfirst_name" placeholder="First Name" >
-                      <input required class="form-control Rpass" v-model="Rlast_name" placeholder="Last Name" >
-                    </div><br>
-                  </div>
-                  <input required type="text" v-model="Remail" class="form-control Remail" placeholder="Username" name="" >
-                  <div class="invalid-tooltip">{{Retool}}</div>
-                  <br>
-                  <div class="form-group">
-                    <div class="input-group" >
-                      <input required class="form-control Rpass" v-model="Rpassword" placeholder="Password" type="password">
-                      <div class="invalid-tooltip">{{Rptool}}</div>
-                      
-                      <div class="input-group-addon">
-                        <a class="input-group-text" @click="show2" style="border-radius: 0 5px 5px 0" ><font-awesome-icon class="eyes-slash" style="font-size:25px;display:none"  :icon="['far', 'eye-slash']" /><font-awesome-icon class="eyes" style="font-size:25px"  :icon="['far', 'eye']" /></a>
-                      </div>
-                    </div>
-                  </div><br>
-                  <input v-if="sslash" class="form-control Rrepass" v-model="Rrepassword" placeholder="Confirm Password" type="password">
-                  <div class="invalid-tooltip">{{Rreptool}}</div>
-                  <p style="text-align:left; font-size:14px">Forgot password? <a >Click Here</a></p>
-                  <button id="submit2" class="btn btn-dark form-control" type="submit">REGISTER</button>
-                  </form>
-                  <br><br>
-                  <p style="font-size:14px">Don’t have an account?  <a >Sign up</a></p>
-                </div>
-              </div>
-            </div>
+    <div class="card login-card">
+      <div class="card-header" :class="{ 'bannerbg-dark': $store.state.isDark, 'bannerbg-light': !$store.state.isDark }"
+        style="padding:0">
+        <button v-bind:class="{ 'active': login }" class="login-btn" @click="login = true">Login</button>
+        <button v-bind:class="{ 'active': !login }" class="login-btn" @click="login = false"> Sign Up</button>
+      </div>
+      <div class="card-body" v-if="login">
+        <a class="navbar-brand" href="/"><img style="height:60px"
+            src="https://www.ramabit.com/media/settings/ramabit.jpg" alt=""></a><br><br>
+        <div class="card">
+          <div class="card-header"
+            :class="{ 'bannerbg-dark': $store.state.isDark, 'bannerbg-light': !$store.state.isDark }">
+            login
           </div>
+          <div class="card-body">
+            <form @submit.prevent="submitForm()">
+              <div id='form1'>
+                <input type="text" class="form-control" v-model="username" placeholder="Username" name="">
+                <br>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input v-model="password" class="form-control" type="password">
+                    <div class="input-group-addon">
+                      <a class="input-group-text" @click.prevent="show"
+                        style="border-radius: 0 5px 5px 0"><font-awesome-icon class="eye-slash"
+                          style="font-size:25px;display:none" :icon="['far', 'eye-slash']" /><font-awesome-icon
+                          class="eye" style="font-size:25px" :icon="['far', 'eye']" /></a>
+                    </div>
+                  </div>
+                </div>
+
+                <p style="text-align:left; font-size:14px">Forgot password? <a>Click Here</a></p>
+              </div>
+              <div id="form2" hidden>
+                <label for="">Google Authenticator Code</label>
+                <input v-model="gcode" class="form-control" type="text"><br>
+              </div>
+
+              <button class="btn btn-dark form-control">LOGIN</button>
+              <br><br>
+              <p style="font-size:14px">Don’t have an account? <a>Sign up</a></p>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="card-body" v-if="!login">
+        <a class="navbar-brand" href="#"><img style="height:60px"
+            src="https://www.ramabit.com/media/settings/ramabit.jpg" alt=""></a><br><br>
+        <div class="card">
+          <div class="card-header"
+            :class="{ 'bannerbg-dark': $store.state.isDark, 'bannerbg-light': !$store.state.isDark }">
+            Sign Up
+          </div>
+          <div class="card-body">
+            <form @submit.prevent="RsubmitForm()">
+              <div class="alert alert-success" v-if="success">{{ success }}</div>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <input required class="form-control Rpass" v-model="Rfirst_name" placeholder="First Name">
+                  <input required class="form-control Rpass" v-model="Rlast_name" placeholder="Last Name">
+                </div><br>
+              </div>
+              <input required type="text" v-model="Remail" class="form-control Remail" placeholder="Username" name="">
+              <div class="invalid-tooltip">{{ Retool }}</div>
+              <br>
+              <div class="form-group">
+                <div class="input-group">
+                  <input required class="form-control Rpass" v-model="Rpassword" placeholder="Password" type="password">
+                  <div class="invalid-tooltip">{{ Rptool }}</div>
+
+                  <div class="input-group-addon">
+                    <a class="input-group-text" @click="show2" style="border-radius: 0 5px 5px 0"><font-awesome-icon
+                        class="eyes-slash" style="font-size:25px;display:none"
+                        :icon="['far', 'eye-slash']" /><font-awesome-icon class="eyes" style="font-size:25px"
+                        :icon="['far', 'eye']" /></a>
+                  </div>
+                </div>
+              </div><br>
+              <input v-if="sslash" class="form-control Rrepass" v-model="Rrepassword" placeholder="Confirm Password"
+                type="password">
+              <div class="invalid-tooltip">{{ Rreptool }}</div>
+              <p style="text-align:left; font-size:14px">Forgot password? <a>Click Here</a></p>
+              <button id="submit2" class="btn btn-dark form-control" type="submit">REGISTER</button>
+            </form>
+            <br><br>
+            <p style="font-size:14px">Don’t have an account? <a>Sign up</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -95,7 +107,7 @@ export default {
     title: 'Login v1 - Pages'
   },
   components: {
-  Vcode
+    Vcode
   },
   data: () => ({
     errors: [],
@@ -116,36 +128,36 @@ export default {
     Rrepassword: '',
     Rlast_name: '',
     Rfirst_name: '',
-    slash : true,
+    slash: true,
     sslash: true,
     login: true,
     success: false,
     Rreptool: '',
     RisShow: false
   }),
-  mounted () {
+  mounted() {
     document.title = ' The My Exchange | Login '
   },
   methods: {
-    async  addinfo () {
+    async addinfo() {
       const formData = {
-          username: this.Remail.toLowerCase(),
-          first_name: this.Rfirst_name,
-          last_name: this.Rlast_name
-        }
-        await axios
-          .post('/createusersinfo/', formData)
-          .then(response => {
-             this.success = 'your account has been successfully created , you will be redirected to the login page'
-            setTimeout(() => {
-              this.success = false
-              this.$store.state.showloginindex = false
-              this.$store.state.showloginnavbar = false
-              this.login = true
-            }, 2000)
-          })
+        username: this.Remail.toLowerCase(),
+        first_name: this.Rfirst_name,
+        last_name: this.Rlast_name
+      }
+      await axios
+        .post('/createusersinfo/', formData)
+        .then(response => {
+          this.success = 'your account has been successfully created , you will be redirected to the login page'
+          setTimeout(() => {
+            this.success = false
+            this.$store.state.showloginindex = false
+            this.$store.state.showloginnavbar = false
+            this.login = true
+          }, 2000)
+        })
     },
-    async  RsubmitForm () {
+    async RsubmitForm() {
       this.Rerrors = []
       this.Rerrors2 = []
       this.Rutool = ''
@@ -153,15 +165,15 @@ export default {
       this.Rreptool = ''
       this.Retool = ''
       document.querySelector('.Rpass').className = document.querySelector('.Rpass').className.replace(' is-invalid', '')
-      if(this.sslash){
+      if (this.sslash) {
         document.querySelector('.Rrepass').className = document.querySelector('.Rrepass').className.replace(' is-invalid', '')
-      }      
+      }
       document.querySelector('.Remail').className = document.querySelector('.Remail').className.replace(' is-invalid', '')
       axios.defaults.headers.common.Authorization = ''
       localStorage.removeItem('token')
       localStorage.removeItem('email')
       this.$store.commit('removeToken')
-      if (this.Rpassword === '' ) {
+      if (this.Rpassword === '') {
         document.querySelector('.Rpass').className += ' is-invalid'
         this.Rerrors2.push('1')
         this.Rptool = ' Password is required'
@@ -208,9 +220,9 @@ export default {
               for (const property in error.response.data) {
                 if (property === 'username') {
                   this.errors.push('Account with this email is already exist')
-                } else if(property === 'password'){
-                this.Rerrors.push(' Your password should be more than 8 characters')
-              } else {
+                } else if (property === 'password') {
+                  this.Rerrors.push(' Your password should be more than 8 characters')
+                } else {
                   this.Rerrors.push(`${property}: ${error.response.data[property]}`)
                 }
               }
@@ -229,31 +241,31 @@ export default {
         this.$swal(error)
       }
     },
-    async  submitForm () {
+    async submitForm() {
       this.errors = []
       axios.defaults.headers.common.Authorization = ''
       localStorage.removeItem('token')
       localStorage.removeItem('email')
       this.$store.commit('removeToken')
       if (this.errors2.length === 0) {
-         this.username = this.username.replace(' ' , '').replace(' ' , '').replace(' ' , '').replace(' ' , '')
-      var formData
-      if(this.gcode){
-        formData = {
-          username: this.username.toLowerCase(),
-          password: this.password,
-          code: this.gcode
+        this.username = this.username.replace(' ', '').replace(' ', '').replace(' ', '').replace(' ', '')
+        var formData
+        if (this.gcode) {
+          formData = {
+            username: this.username.toLowerCase(),
+            password: this.password,
+            code: this.gcode
+          }
+        } else {
+          formData = {
+            username: this.username.toLowerCase(),
+            password: this.password
+          }
         }
-      }else{
-        formData = {
-          username: this.username.toLowerCase(),
-          password: this.password
-        }
-      }
         await axios
           .post('/token/login', formData)
           .then(response => {
-            if (response.data == 1){
+            if (response.data == 1) {
               document.getElementById('form1').hidden = true
               document.getElementById('form2').hidden = false
               return
@@ -269,11 +281,11 @@ export default {
           .catch(error => {
             if (error.response) {
               console.log(error.response)
-                if ( error.response.data[0] === 'non_field_errors') {
-                  this.$swal(`<div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span></div><h5>Incorrect Username Or Password</h5>`)
-                } else {
-                  this.$swal(`<div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span></div><h5>${error.response.data[0]}</h5>`)
-                }
+              if (error.response.data[0] === 'non_field_errors') {
+                this.$swal(`<div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span></div><h5>Incorrect Username Or Password</h5>`)
+              } else {
+                this.$swal(`<div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span></div><h5>${error.response.data[0]}</h5>`)
+              }
             } else if (error.message) {
               this.$swal(`<div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span></div><h5>${error.message}</h5>`)
             }
@@ -284,36 +296,51 @@ export default {
 }
 </script>
 <style>
-#passfld{
-    text-security:disc;
-    -webkit-text-security:disc;
-    -mox-text-security:disc;
+#passfld {
+  text-security: disc;
+  -webkit-text-security: disc;
+  -mox-text-security: disc;
 }
-.invalid-tooltip{
+
+.invalid-tooltip {
   position: relative;
-  top:0;
+  top: 0;
   background-color: rgba(0, 0, 0, 0);
   color: red;
   text-align: left;
 }
-.login-card{
+
+.login-card {
   position: absolute;
-  width:40% ; left: 30% ; top:5% 
+  width: 40%;
+  left: 30%;
+  top: 5%
 }
-.login-btn{
-  width:50% ; 
-  float:left ; 
-  background: none; 
+
+.login-btn {
+  width: 50%;
+  float: left;
+  background: none;
   border-style: none;
   padding: 10px;
-  color : grey!important
+  color: grey !important
 }
-.login-btn:hover{
+
+.login-btn:hover {
   background: grey;
-  color: black!important
+  color: black !important
 }
-.active{
+
+.active {
   background: #bcbcbc;
 }
 
+@media only screen and (max-width: 700px) {
+  .login-card {
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: 5%
+  }
+}
 </style>

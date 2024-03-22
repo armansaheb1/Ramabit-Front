@@ -11,7 +11,9 @@
       </div>
     </div>
 
-    <div :class="$store.state.collapse ? 'small-collapse' : 'small-ncollapse'" style="" class=" side">
+    <div
+      :class="{ 'bg-light': !$store.state.isDark, 'bg-dark': $store.state.isDark, 'small-collapse': $store.state.collapse, 'small-ncollapse': !$store.state.collapse }"
+      style="" class=" side">
       <div id="aa" style="height: 100%" :class="{ 'bg-light': !$store.state.isDark, 'bg-dark': $store.state.isDark }">
         <sidebar />
       </div>

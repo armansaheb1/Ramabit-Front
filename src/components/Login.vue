@@ -324,4 +324,11 @@ export default {
   background: #bcbcbc;
 }
 
+@media only screen and (max-width: 700px) {
+  .login-card{
+  position: absolute;
+  width:80% ; left: 10% ; top:5% 
+}
+}
+
 </style>

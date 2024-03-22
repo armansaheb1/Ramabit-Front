@@ -1,15 +1,17 @@
 <template>
   <div>
-    <nav style="height:81px; border-bottom: solid lightgrey 1px; direction: rtl;" class="navbar navbar-expand-lg"
+    <nav style="height:81px; border-bottom: 1px solid #333; direction: rtl;" class="navbar navbar-expand-lg"
       :class="{ 'bg-light': !$store.state.isDark, 'bg-dark': $store.state.isDark }">
-      <div class="container-fluid">
+      <div class="container-fluid" style="padding: 0">
         <a class="navbar-brand" href="/"><img style="height:60px ; margin-left:10px"
             src="https://www.ramabit.com/media/settings/ramabit.jpg" alt=""></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button @click="menus = !menus" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div v-if="menus" style="z-index: 1; text-align: right" class="navbar-collapse" id="navbarSupportedContent"
+          :class="{ 'bg-light': !$store.state.isDark, 'bg-dark': $store.state.isDark }">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 100%;">
             <li class="nav-item ">
               <a class="nav-link " href="/" id="navbarDropdown" role="button" aria-expanded="false">
@@ -51,12 +53,12 @@
 
           <ul class="navbar-nav  mb-2 mb-lg-0" style="font-size:23px">
             <li class="nav-item ">
-              <a style="margin-right:15px" v-if="!$store.state.isDark" @click="darker()" class="nav-link " href="#"
-                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a style="" v-if="!$store.state.isDark" @click="darker()" class="nav-link " href="#" id="navbarDropdown"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <font-awesome-icon icon="moon" />
               </a>
-              <a style="margin-right:15px" v-if="$store.state.isDark" @click="lighter()" class="nav-link " href="#"
-                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a style="" v-if="$store.state.isDark" @click="lighter()" class="nav-link " href="#" id="navbarDropdown"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <font-awesome-icon icon="sun" />
               </a>
             </li>
@@ -108,14 +110,21 @@ export default {
   },
   mounted() {
     this.get_user()
+    this.before()
   },
   data() {
     return {
       showModal: false,
       name: '',
+      menus: false
     }
   },
   methods: {
+    before() {
+      if (window.innerWidth > 1023) {
+        this.menus = true
+      }
+    },
     async get_user() {
       await axios
         .get('/user')

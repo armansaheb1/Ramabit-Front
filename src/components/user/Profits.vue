@@ -20,12 +20,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="col">کاربر</th>
-                <th scope="col">نوع ارز</th>
-                <th scope="col">نوع پلن</th>
-                <th scope="col">مبلغ</th>
-                <th scope="col">زمان تراکنش </th>
+              <tr v-for="item in profits" v-bind:key="item">
+                <th scope="col">{{ item[0] }}</th>
+                <th scope="col">{{ item[4] }}</th>
+                <th scope="col">{{ item[1] }}</th>
+                <th scope="col">{{ item[2] }}</th>
+                <th scope="col">{{ item[3] }} </th>
               </tr>
             </tbody>
           </table>
@@ -51,7 +51,7 @@ export default {
   },
   data: () => ({
     showModal: [],
-    currencies: [],
+    profits: [],
     currency: '',
     plans: [],
     plan: '',
@@ -62,38 +62,18 @@ export default {
     ModalsContainer,
   },
   mounted() {
-    this.get_currencies()
+    this.get_profits()
   },
   methods: {
     login() {
       this.$store.state.showloginindex = true
     },
-    async get_currencies() {
+    async get_profits() {
       await axios
-        .get(`currencies`)
+        .get(`profits`)
         .then(response => response.data)
         .then(response => {
-          this.currencies = response
-          this.currency = response[0].id
-          this.get_plans()
-        })
-    },
-    async get_image(id) {
-      await axios
-        .get(`currencies/${id}`)
-        .then(response => response.data)
-        .then(response => {
-          console.log(response)
-          this.pic = response.get_image
-        })
-    },
-    async get_plans() {
-      await axios
-        .get(`plan-by-currency/${this.currency}`)
-        .then(response => response.data)
-        .then(response => {
-          this.plans = response
-          this.get_image(this.currency)
+          this.profits = response
         })
     },
   }
